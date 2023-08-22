@@ -2,9 +2,28 @@ class Navigator < Character
   def update(map)
     dx = 0
     dy = 0
-    dx = 1 if Input.key_push?(K_RIGHT)
-    dx = -1 if Input.key_push?(K_LEFT)
-    dy = -1 if Input.key_push?(K_UP)
+    
+    # 改造部分
+    if Input.key_push?(K_RIGHT)
+      dx = 1
+      @ev3_controller.move_righturn(0.2)
+    end
+
+    if Input.key_push?(K_LEFT)
+      dx = -1 
+      @ev3_controller.move_lefturn(0.2)
+    end
+
+    if Input.key_push?(K_UP)
+      dy = -1
+      @ev3_controller.move_backward(0.2)
+    end
+
+    if Input.key_push?(K_DOWN)
+      dy = 1
+      @ev3_controller.move_forward(0.2)
+    end
+    # ここまで
 
     if Input.key_push?(K_DOWN)
       dy = 1
