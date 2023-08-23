@@ -19,10 +19,7 @@ class Navigator < Character
       @ev3_controller.move_backward(0.2)
     end
 
-    if Input.key_push?(K_DOWN)
-      dy = 1
-      @ev3_controller.move_forward(0.2)
-    end
+
     # ここまで
 
     if Input.key_push?(K_DOWN)
