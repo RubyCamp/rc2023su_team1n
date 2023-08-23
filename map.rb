@@ -14,6 +14,12 @@ class Map
   def update
   end
 
+  #追加しました
+  def updata_map_data(x,y,color)
+    @map_data[y][x] = color.to_i
+  end
+  #ここまで　北村
+
   def draw
     @map_data.each_with_index do |line, my|
       line.each_with_index do |chip_num, mx|

@@ -31,7 +31,10 @@ class Navigator < Character
     end
 
     update_new_position(map, @x + dx, @y + dy)
-
+    # 追加しました
+    co = @ev3_controller.get_color
+    map.updata_map_data(@x,@y,co)
+    # ここまで 北村
     Window.draw_font(600, 100, "COLOR: #{@ev3_controller.get_color}", @font)
   end
 end
