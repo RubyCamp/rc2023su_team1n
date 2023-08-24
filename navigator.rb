@@ -3,53 +3,82 @@ class Navigator < Character
     dx = 0
     dy = 0
 
-    turntime = 0.7 #実行時間
+    turntime = 0.67 #実行時間
+    turn = 0.1
     # 改造部分
     #「→」キーを押すとDXRuby上のアイコンとEV3がアイコンが右を向く
     if Input.key_push?(K_RIGHT)
-      @rot += 90
+      @rot += 9
       @rot = @rot % 360
-      @ev3_controller.move_righturn(turntime)
+      @ev3_controller.move_righturn(turn)
     end
     #「←」キーを押すとDXRuby上のアイコンとEV3がアイコンが左を向く
     if Input.key_push?(K_LEFT)
-      @rot -= 90
+      @rot -= 9
       @rot = @rot % 360
-      @ev3_controller.move_lefturn(turntime)
+      @ev3_controller.move_lefturn(turn)
     end
     #「↑」キー押すとDXRuby上のアイコンの向いてる向きにEV3とアイコンが前に進む
     if Input.key_push?(K_UP)
-      case @rot
-      when 0
+      if (0..45).cover?(@rot) || (316..360).cover?(@rot)
         dy = -1
         @ev3_controller.move_forward(turntime)
-      when 90
-        dx = 1
+      elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
+        dy = -1
         @ev3_controller.move_forward(turntime)
-      when 180
-        dy = 1
+      elsif (136..180).cover?(@rot) || (181..225).cover?(@rot)
+        dy = -1
         @ev3_controller.move_forward(turntime)
-      when 270
-        dx = -1
+      elsif (226..270).cover?(@rot) || (271..315).cover?(@rot)
+        dy = -1
         @ev3_controller.move_forward(turntime)
       end
+      #case文を使った場合、挙動に難あり
+      # case @rot
+      # when 0..45 || 315..360
+      #   dy = -1
+      #   @ev3_controller.move_forward(turntime)
+      # when 90
+      #   dx = 1
+      #   @ev3_controller.move_forward(turntime)
+      # when 180
+      #   dy = 1
+      #   @ev3_controller.move_forward(turntime)
+      # when 270
+      #   dx = -1
+      #   @ev3_controller.move_forward(turntime)
+      # end
     end
     #「↓」キー押すとDXRuby上のアイコンの向いてる向きにEV3とアイコンが後ろに進む
     if Input.key_push?(K_DOWN)
-      case @rot
-      when 0
+      if (0..45).cover?(@rot) || (316..359).cover?(@rot)
         dy = 1
         @ev3_controller.move_backward(turntime)
-      when 90
+      elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
         dx = -1
-        @ev3_controller.move_backward(turntime)
-      when 180
+        @ev3_controller.move_backard(turntime)
+      elsif (136..180).cover?(@rot) || (181..225).cover?(@rot)
         dy = -1
         @ev3_controller.move_backward(turntime)
-      when 270
+      elsif (226..270).cover?(@rot) || (271..315).cover?(@rot)
         dx = 1
         @ev3_controller.move_backward(turntime)
       end
+      #case文を使った場合難あり
+      # case @rot
+      # when 0
+      #   dy = 1
+      #   @ev3_controller.move_backward(turntime)
+      # when 90
+      #   dx = -1
+      #   @ev3_controller.move_backward(turntime)
+      # when 180
+      #   dy = -1
+      #   @ev3_controller.move_backward(turntime)
+      # when 270
+      #   dx = 1
+      #   @ev3_controller.move_backward(turntime)
+      # end
     end
     # ここまで
 
