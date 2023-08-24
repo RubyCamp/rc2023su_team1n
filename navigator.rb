@@ -56,7 +56,7 @@ class Navigator < Character
         @ev3_controller.move_backward(turntime)
       elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
         dx = 1
-        @ev3_controller.move_backard(turntime)
+        @ev3_controller.move_backward(turntime)
       elsif (136..180).cover?(@rot) || (181..225).cover?(@rot)
         dy = 1
         @ev3_controller.move_backward(turntime)
