@@ -13,6 +13,10 @@ class Map
     @white_img = Image.load("images/white.jpg")
   end
 
+  def updata_cell(x,y,num)
+    @map_data[y][x] = num
+  end
+
   def update
   end
 
@@ -42,7 +46,7 @@ class Map
   # 指定されたマップ座標[new_x, new_y]が進入可能かどうかを真偽値で返す。
   def is_available?(new_x, new_y)
     if @map_data[new_y]
-      return @map_data[new_y][new_x].to_i != BLOCK_CHIP_NUM
+      return @map_data[new_y][new_x].to_i != 2
     end
     return false
   end

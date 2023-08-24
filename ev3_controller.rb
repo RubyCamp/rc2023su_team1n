@@ -1,10 +1,10 @@
 class EV3Controller
-  COLOR_SENSOR = "3"
+  COLOR_SENSOR = "4"
   LEFT_MOTOR = "C"
   RIGHT_MOTOR = "B"
   MOTOR_SPEED = 50
 
-  def initialize(port = "COM4")
+  def initialize(port = "COM7")
     @motors = [LEFT_MOTOR, RIGHT_MOTOR]
     @brick = EV3::Brick.new(EV3::Connections::Bluetooth.new(port))
     @brick.connect

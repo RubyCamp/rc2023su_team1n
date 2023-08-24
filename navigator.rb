@@ -1,4 +1,5 @@
 class Navigator < Character
+  COLOR_SENSOR = "3"
     def update(map)
       dx = 0
       dy = 0
@@ -37,12 +38,10 @@ class Navigator < Character
       
      # 追加する部分（色の判定）
 
-     def updata_cell(x,y,num)
-        @map_data[y][x] = num
-     end
+      color = @ev3_controller.get_color
+      # color = @brick.get_sensor(COLOR_SENSOR, 2)
 
-      color = brick.get_sensor(COLOR_SENSOR, 2)
-
+      p color 
       case color
       when 0 then puts "色がありません"
       when 1 then puts "黒色"
@@ -55,4 +54,5 @@ class Navigator < Character
       end
     
     end
+
   end
