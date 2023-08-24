@@ -10,11 +10,13 @@ require_relative 'navigator'
 Window.width = 800
 Window.height = 600
 
+
+
 map = Map.new("mapdata/map.dat")
 
 # ※ 座標系をマップ座標系に変更
 characters = []
-characters << Navigator.new("COM11", 1, 1, Image.load("images/Yazirusi.png"))
+characters << Navigator.new("COM4", 1, 1, Image.load("images/Yazirusi.png"))
 
 Window.loop do
  # s.draw
@@ -23,12 +25,10 @@ Window.loop do
   map.update
   map.draw
 
-  # characters.each do |char|
-  #   char.update(map)
-  #   char.draw
-  # end
-end
+  characters.each do |char|
+    char.update(map)
+    char.draw
+    # char.close
+   end
 
-# characters.each do |char|
-#   char.close
-# end
+end

@@ -1,9 +1,11 @@
 class Character
-  def initialize(x, y, img)
+  def initialize(port, x, y, img)
+    @ev3_controller = EV3Controller.new(port)
     @x = x
     @y = y
     @rot = 0
     @img = img
+    @font = Font.new(24)
   end
 
   def update(map)

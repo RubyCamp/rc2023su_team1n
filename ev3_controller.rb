@@ -1,10 +1,10 @@
 class EV3Controller
-  COLOR_SENSOR = "3"
+  COLOR_SENSOR = "4"
   LEFT_MOTOR = "C"
   RIGHT_MOTOR = "B"
   MOTOR_SPEED = 50
 
-  def initialize(port = "COM4")
+  def initialize(port = "COM12")
     @motors = [LEFT_MOTOR, RIGHT_MOTOR]
     @brick = EV3::Brick.new(EV3::Connections::Bluetooth.new(port))
     @brick.connect
@@ -24,8 +24,9 @@ class EV3Controller
    #左タイヤだけ逆回転
    @brick.reverse_polarity(*@motors[0])
    @brick.start(speed, *@motors)
-    sleep sec
-    @brick.stop(true, *@motors[0])
+   sleep sec
+   @brick.stop(true, *@motors)
+   @brick.run_forward(*@motors)
   end
 
   def move_righturn(sec, speed = MOTOR_SPEED)

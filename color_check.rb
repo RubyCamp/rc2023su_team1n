@@ -1,7 +1,7 @@
 # require_relative '..\tutorials\13_EV3を動かしてみよう\ruby-ev3\lib\ev3.rb'
 require_relative '.\ruby-ev3\lib\ev3.rb'
 
-PORT = "COM4"
+PORT = "COM7"
 LEFT_MOTOR = "C"
 RIGHT_MOTOR = "B"
 COLOR_SENSOR = "3"
