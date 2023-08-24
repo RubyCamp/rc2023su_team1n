@@ -14,7 +14,7 @@ map = Map.new("mapdata/map.dat")
 
 # ※ 座標系をマップ座標系に変更
 characters = []
-characters << Navigator.new("COM6", 1, 1, Image.load("images/navigator.png"))
+characters << Navigator.new("COM4", 1, 1, Image.load("images/Yazirusi.png"))
 
 Window.loop do
  # s.draw

@@ -2,6 +2,7 @@ class Character
   def initialize(x, y, img)
     @x = x
     @y = y
+    @rot = 0
     @img = img
   end
 
@@ -9,7 +10,11 @@ class Character
   end
 
   def draw
-    Window.draw(@x * NewMap::CHIP_SIZE, @y * NewMap::CHIP_SIZE, @img) # 移動単位をピクセル単位からマップ座標系の単位に変更
+    Window.draw_rot(@x * Map::CHIP_SIZE, @y * Map::CHIP_SIZE, @img,@rot) # 移動単位をピクセル単位からマップ座標系の単位に変更
+  end
+
+  def close
+    @ev3_controller.close
   end
 
   private
