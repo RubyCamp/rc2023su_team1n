@@ -21,15 +21,20 @@ class EV3Controller
 
   # 以下追加コード 左,右,後進
   def move_lefturn(sec, speed = MOTOR_SPEED)
-    @brick.start(speed, *@motors[0])
+   #左タイヤだけ逆回転
+   @brick.reverse_polarity(*@motors[0])
+   @brick.start(speed, *@motors)
     sleep sec
     @brick.stop(true, *@motors[0])
   end
 
   def move_righturn(sec, speed = MOTOR_SPEED)
-    @brick.start(speed, *@motors[1])
+    @brick.reverse_polarity(*@motors[1])
+        #右タイヤだけ逆回転
+    @brick.start(speed, *@motors)
     sleep sec
-    @brick.stop(true, *@motors[1])
+    @brick.stop(true, *@motors)
+    @brick.run_forward(*@motors)
   end
 
   # ちょっと怪しい
