@@ -18,9 +18,10 @@ class Navigator < Character
       @rot = @rot % 360
       @ev3_controller.move_lefturn(turn)
     end
+
     #「↑」キー押すとDXRuby上のアイコンの向いてる向きにEV3とアイコンが前に進む
     if Input.key_push?(K_UP)
-      if (0..45).cover?(@rot) || (316..360).cover?(@rot)
+      if (0..45).cover?(@rot) || (316..359).cover?(@rot)
         dy = 1
         @ev3_controller.move_forward(turntime)
       elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
@@ -80,6 +81,44 @@ class Navigator < Character
       #   @ev3_controller.move_backward(turntime)
     end
     
+    # reset機能追加
+    #「D」キーを押すとDXRuby上のアイコンのみが右を向く
+    if Input.key_push?(K_D)
+      @rot += 9
+      @rot = @rot % 360
+    end
+    #「A」キーを押すとDXRuby上のアイコンのみが左を向く    
+    if Input.key_push?(K_A)
+      @rot -= 9
+      @rot = @rot % 360
+    end
+    if Input.key_push?(K_W)
+      if (0..45).cover?(@rot) || (316..359).cover?(@rot)
+        dy = 1
+      elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
+        dx = -1
+      elsif (136..180).cover?(@rot) || (181..225).cover?(@rot)
+        dy = -1
+      elsif (226..270).cover?(@rot) || (271..315).cover?(@rot)
+        dx = 1
+      end 
+    end
+    if Input.key_push?(K_S)
+      if (0..45).cover?(@rot) || (316..359).cover?(@rot)
+          dy = -1
+          puts "0度の時後進"
+      elsif (46..90).cover?(@rot) || (91..135).cover?(@rot)
+          dx = 1
+          puts "90度の時後進"
+      elsif (136..180).cover?(@rot) || (181..225).cover?(@rot)
+          dy = 1
+          puts "180度の時後進"
+      elsif (226..270).cover?(@rot) || (271..315).cover?(@rot)
+          dx = -1
+          puts "270度の時後進"
+      end
+    end      
+    # reset機能ここまで
 
     update_new_position(map, @x + dx, @y + dy)
     # 追加しました
