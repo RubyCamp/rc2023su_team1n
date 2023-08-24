@@ -65,15 +65,14 @@ class Navigator < Character
     color = @ev3_controller.get_color
     # color = @brick.get_sensor(COLOR_SENSOR, 2)
 
-    p color 
     case color
     when 0 then puts "色がありません"
     when 1 then puts "黒色"
-    when 2 then map.updata_cell(@x, @y, 2)
-    when 3 then map.updata_cell(@x, @y, 3)
+    when 2 then map.updata_map_data(@x, @y, 2)
+    when 3 then map.updata_map_data(@x, @y, 3)
     when 4 then puts "黄色"
-    when 5 then map.updata_cell(@x, @y, 5)
-    when 6 then map.updata_cell(@x, @y, 6)
+    when 5 then map.updata_map_data(@x, @y, 5)
+    when 6 then map.updata_map_data(@x, @y, 6)
     when 7 then puts "茶色"
     end
   end
