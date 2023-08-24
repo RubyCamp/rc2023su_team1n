@@ -3,7 +3,7 @@ class Navigator < Character
     dx = 0
     dy = 0
 
-    turntime = 0.8 #実行時間
+    turntime = 0.7 #実行時間
     # 改造部分
     #「→」キーを押すとDXRuby上のアイコンとEV3がアイコンが右を向く
     if Input.key_push?(K_RIGHT)
