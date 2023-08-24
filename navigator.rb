@@ -5,51 +5,48 @@ class Navigator < Character
 
     turntime = 0.8 #実行時間
     # 改造部分
+    #「→」キーを押すとDXRuby上のアイコンとEV3がアイコンが右を向く
     if Input.key_push?(K_RIGHT)
       @rot += 90
       @rot = @rot % 360
-      puts @rot
       @ev3_controller.move_righturn(turntime)
     end
-
+    #「←」キーを押すとDXRuby上のアイコンとEV3がアイコンが左を向く
     if Input.key_push?(K_LEFT)
       @rot -= 90
       @rot = @rot % 360
-      puts @rot
       @ev3_controller.move_lefturn(turntime)
     end
-
+    #「↑」キー押すとDXRuby上のアイコンの向いてる向きにEV3とアイコンが前に進む
     if Input.key_push?(K_UP)
-      if @rot == 0
+      case @rot
+      when 0
         dy = -1
-        puts @rot
         @ev3_controller.move_forward(turntime)
-      elsif @rot == 90
+      when 90
         dx = 1
-        puts @rot
         @ev3_controller.move_forward(turntime)
-      elsif @rot == 180
+      when 180
         dy = 1
-        puts @rot
         @ev3_controller.move_forward(turntime)
-      elsif @rot == 270
+      when 270
         dx = -1
-        puts @rot
         @ev3_controller.move_forward(turntime)
       end
     end
-
+    #「↓」キー押すとDXRuby上のアイコンの向いてる向きにEV3とアイコンが後ろに進む
     if Input.key_push?(K_DOWN)
-      if @rot == 0
+      case @rot
+      when 0
         dy = 1
         @ev3_controller.move_backward(turntime)
-      elsif @rot == 90
+      when 90
         dx = -1
         @ev3_controller.move_backward(turntime)
-      elsif @rot == 180
+      when 180
         dy = -1
         @ev3_controller.move_backward(turntime)
-      elsif @rot == 270
+      when 270
         dx = 1
         @ev3_controller.move_backward(turntime)
       end
