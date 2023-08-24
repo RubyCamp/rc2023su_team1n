@@ -1,11 +1,12 @@
 class Map
   CHIP_SIZE = 50
   def initialize(map_data_path)
-    @map_data = []
-    File.open(map_data_path) do |f|
-      f.each do |line|
-        @map_data << line.chomp.split(/\s*,\s*/)
-      end
+    @map_data = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0]
+    ]
+    
     end
     @block_img = Image.load("images/blue.png")
     @bonus_img = Image.load("images/green.png")
